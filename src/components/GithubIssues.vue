@@ -59,6 +59,15 @@
         </v-flex>
       </v-layout>
 
+      <v-snackbar
+        color="error"
+        v-model="alertaErro"
+        :timeout="12000"
+      >
+        Houve um problema na conexão com o GitHub. Verifique se o usuário e repositório estão corretos.
+        <v-btn dark flat @click.native="alertaErro = false">Fechar</v-btn>
+      </v-snackbar>
+
     </v-container>
 
 </template>
@@ -86,7 +95,8 @@ export default {
     ],
     pagination: {
       sortBy: 'number'
-    }
+    },
+    alertaErro: false
   }),
 
   methods: {
@@ -109,6 +119,7 @@ export default {
           })
           .catch((error) => {
             console.log(error.response.data)
+            this.alertaErro = true
             // this.response.status = 'error'
             // this.response.message = 'Repositório não existe!'
           })
