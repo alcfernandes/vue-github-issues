@@ -63,6 +63,7 @@ export default {
     fieldsReset () {
       this.username = ''
       this.repository = ''
+      this.issues = []
     },
 
     getIssues () {
